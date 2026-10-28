@@ -1,3 +1,110 @@
+* {
+    box-sizing: border-box;
+}
+html,
+body,
+#root {
+    width: 100%;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 body{
-    background-color: lightgray;
+    background-color: #27282b;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    font-size: clamp(14px, 2vw, 16px);
+    color: #fff;
+}
+h1{
+    text-align: center;
+    margin-top: 32px;
+    margin-bottom: 64px;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+.apiText{
+    display: none;
+}
+.navStyle{
+    background-color: #201e1e;
+    padding: 5px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    white-space: nowrap;
+}
+.navLinks{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+}
+.navStyle a{
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    font-size: clamp(12px, 1.2vw, 16px);
+}
+.navStyle a:hover{
+    color: #23d300;
+}
+.navStyle img{
+    width: 36px;
+    height: 36px;
+
+}
+
+
+/* Box Styling Front page */
+.priceOuterBox{
+    display: grid;
+    place-items: center;
+    background-color: #201e1e;
+    box-shadow:
+        inset 0 0 8px 2px rgba(255, 255, 255, 0.25),
+        0 0 4px 0 rgba(0, 0, 0, 0.25);
+    width: min(55vw, 35vh, 275px);
+    aspect-ratio: 1;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+.priceMiddleBox{
+    display: grid;
+    place-items: center;
+    width: 85%;
+    border: 1px solid #55EC20;
+    border-radius: 50%;
+    border-style: dashed;
+    aspect-ratio: 1;
+}
+.priceInnerBox{
+    width: 85%;
+    border: 1px solid #55EC20;
+    border-radius: 50%;
+    border-style: dashed;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+}
+.siteFooter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80px;
+    margin: auto 0 0;
+    padding: 12px;
+    background-color: #201e1e;
+    text-align: center;
+    font-size: clamp(12px, 2vw, 14px);
+}
+.siteFooter span{
+    color: #23d300;
 }
