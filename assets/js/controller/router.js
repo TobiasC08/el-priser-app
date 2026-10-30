@@ -3,6 +3,7 @@ import { historypage } from "../view/pages/history.js";
 import { notfoundpage } from "../view/pages/notfound.js";
 import { overviewpage } from "../view/pages/overview.js";
 import { settingspage } from "../view/pages/indstillinger.js";
+import { getPricesForDate } from "../model/getData.js";
 
 const root = document.getElementById('root')
 
@@ -38,6 +39,42 @@ export async function router(){
 
     // Draw new DOM
     root.innerHTML = await currentRoute.html()
+
+    if (path === "history") {
+    const datePicker = document.getElementById("historyDate");
+    const priceList = document.getElementById("historyPrices");
+
+    datePicker.addEventListener("click", () => {
+        if (typeof datePicker.showPicker === "function") {
+            datePicker.showPicker();
+        }
+    });
+
+    async function showPrices(date) {
+        const prices = await getPricesForDate(date);
+
+        priceList.innerHTML = prices.map(price => {
+            const hour = new Date(price.time_start).toLocaleTimeString("da-DK", {
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+
+            return `
+                <li class="hourlyPriceRow">
+                    <span>Kl. ${hour}</span>
+                    <strong>${Number(price.DKK_per_kWh).toFixed(3)} øre/kWh</strong>
+                </li>
+            `;
+        }).join("");
+    }
+
+    datePicker.addEventListener("change", () => {
+        showPrices(datePicker.value);
+    });
+
+    showPrices(datePicker.value);
+}
+
 }
 
 

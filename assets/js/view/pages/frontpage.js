@@ -1,12 +1,25 @@
-import { getCurrentData } from "../../model/getData.js";
+import { getTodayPrices} from "../../model/getData.js";
 import { footer } from "../components/footer.js";
 import { navbar } from "../components/nav.js";
 import { pageHeading } from "../components/pageHeader.js";
 
 export async function frontpage (){
 
-    let data = await getCurrentData()
+    let data = await getTodayPrices()
     console.log("Frontpage products: ", data)
+
+    let currentTime = new Date()
+    let currentPrice = data.find(item => currentTime >= new Date(item.time_start) && currentTime <= new Date(item.time_end)) 
+    console.log("Current price: ", currentPrice)
+
+    let startTime = new Date(currentPrice.time_start).toLocaleTimeString("da-DK", {
+    hour: "2-digit",
+    minute: "2-digit"
+})
+    let endTime = new Date(currentPrice.time_end).toLocaleTimeString("da-DK", {
+    hour: "2-digit",
+    minute: "2-digit"
+})
 
     const page = `
         ${navbar()}
@@ -15,10 +28,12 @@ export async function frontpage (){
             <div class="priceOuterBox">
                 <div class="priceMiddleBox">
                     <div class="priceInnerBox">
-                        ${data && data.products.map((item) => `<p class="apiText">${item.title}</p>`).join('')}
+                    <h2 class="currentPrice">${currentPrice.DKK_per_kWh} øre/kWh</h2>
                     </div>
                 </div>
             </div>
+            
+            <p class="currentPriceTime">Kl. ${startTime} - ${endTime}</p>
         </section>
         ${footer()}
         `
