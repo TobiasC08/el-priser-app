@@ -95,10 +95,15 @@ h1{
 }
 .currentPrice{
     margin: 0;
+    max-width: 100%;
+    padding: 0 4px;
     text-align: center;
+    font-size: clamp(0.65rem, 4vw, 1.2rem);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
 }
 .currentPriceTime{
-    margin: 4px 0 0;
+    margin: 24px 0 0;
     text-align: center;
 }
 
