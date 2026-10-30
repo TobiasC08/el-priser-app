@@ -1,4 +1,4 @@
-const CACHE_NAME = "elpriser-v1";
+const CACHE_NAME = "elpriser-v2";
 
 const FILES_TO_CACHE = [
     "./",
